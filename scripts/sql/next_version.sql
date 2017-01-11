@@ -22,3 +22,5 @@ ALTER TABLE public.config DROP steam_username;
 ALTER TABLE public.config DROP steam_password;
 ALTER TABLE public.config DROP steam_guard_code;
 ALTER TABLE public.config DROP steam_sentry_file;
+
+ALTER TABLE public.events ADD lobby_bot_id INT DEFAULT NULL  NULL;
