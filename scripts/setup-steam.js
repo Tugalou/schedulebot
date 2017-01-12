@@ -260,13 +260,13 @@ function removeBot(id, client) {
 									process.exit(1);
 								}
 
-								console.log("\nThis bot has been successfully removed from the" +
+								console.log("\nThis bot has been successfully removed from the " +
 									"database.");
 								process.exit();
 
 							});
 						} else {
-							console.log("\nThis bot has been successfully removed from the" +
+							console.log("\nThis bot has been successfully removed from the " +
 								"database.");
 							process.exit();
 						}
