@@ -242,8 +242,38 @@ function removeBot(id, client) {
 
 				if (!err){
 
-					console.log("\nThis bot has been successfully removed from the database.");
-					process.exit();
+					client.query("SELECT * FROM steam_bots", (err, result) => {
+
+						if (err) {
+							console.error(err);
+							process.exit(1);
+						}
+
+						// If there are no more bots, restart the sequences, so the next bot
+						// is assigned ID 1.
+						if (result.rows.length === 0) {
+							client.query("TRUNCATE TABLE public.steam_bots" +
+								" RESTART IDENTITY RESTRICT;", err => {
+
+								if (err) {
+									console.error(err);
+									process.exit(1);
+								}
+
+								console.log("\nThis bot has been successfully removed from the" +
+									"database.");
+								process.exit();
+
+							});
+						} else {
+							console.log("\nThis bot has been successfully removed from the" +
+								"database.");
+							process.exit();
+						}
+
+					});
+
+
 
 				}else {
 					console.error(err);
